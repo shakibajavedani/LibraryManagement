@@ -8,18 +8,18 @@ namespace tamrin_list
 {
     class Book
     {
-        public Book(string title, string author, int isbn, int date)
+        public Book(string title, string author, int isbn, int publishyear)
         {
             Title = title;
             Author = author;
             Isbn = isbn;
-            Date = date;
+            PublishYear = publishyear;
         }
 
         public int Isbn { get; }
         public string Title { get; set; }
         public string Author { get; set; }
-        public int Date { get; set; }
+        public int PublishYear { get; set; }
 
 
     }

@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace tamrin_list
 {
-        class Library
+        class BookManager
         {
             // ایجاد لیست
             List<Book> books = new List<Book>();
@@ -67,46 +67,12 @@ namespace tamrin_list
                 return false;
             }
 
-            found.Date = newDate;
+            found.PublishYear = newDate;
             return true;
         }
 
 
-        //سرچ زدن
-
-        public void SearchBookByIsbn(int isbn)
-            {
-            Book found = FindBookByIsbn(isbn);
-
-            if(found != null)
-             {
-                Console.WriteLine($"Title: {found.Title} Author: {found.Author} Isbn: {found.Isbn} Date: {found.Date}");
-              }
-            }
-
-        public void SearchBookByTitle(string title)
-        {
-            List<Book> booklist = FindBookByTitle(title);
-            if (booklist != null)
-            {
-                foreach (Book book in booklist)
-                {
-                    Console.WriteLine($"Title: {book.Title} Author: {book.Author} Isbn: {book.Isbn} Date: {book.Date}");
-                }            
-            }
-        }
-
-        public void SearchBookByDate(int date)
-        {
-            List<Book> booklist = FindBookByDate(date);
-            if (booklist != null)
-            {
-                foreach (Book book in booklist)
-                {
-                    Console.WriteLine($"Title: {book.Title} Author: {book.Author} Isbn: {book.Isbn} Date: {book.Date}");
-                }
-            }
-        }
+       
 
             //توابع کمکی سرچ زدن 
             public Book FindBookByIsbn(int isbn)
@@ -119,17 +85,10 @@ namespace tamrin_list
             return books.FindAll(book=>book.Title==title);
             }
 
-            public List<Book> FindBookByDate(int date)
+            public List<Book> FindBookByPublishYear(int date)
             {
-            return books.FindAll(book=>book.Date==date);
+            return books.FindAll(book=>book.PublishYear==date);
             }
-
-
-
-            public void ShowBook()
-            {
-            }
-
         
     }
 

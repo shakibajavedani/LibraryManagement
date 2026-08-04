@@ -1,6 +1,11 @@
 ﻿using tamrin_list;
 
-Library manager = new Library();
+static void ShowBook(Book book)
+{
+    Console.WriteLine($"Title: {book.Title} Author: {book.Author} Isbn: {book.Isbn} Date: {book.PublishYear}");
+}
+
+BookManager manager = new BookManager();
 
 
 Console.WriteLine("what do you want to do");
@@ -91,7 +96,7 @@ switch (choose1)
                         Console.Write("enter the new Author : ");
                         string newAuthorName = Console.ReadLine();
                         
-                        if(manager.EditTitleBook(isbn, newAuthorName))
+                        if(manager.EditAuthorBook(isbn, newAuthorName))
                         { 
                             Console.WriteLine("Book author name updated.");
                         }
@@ -135,7 +140,16 @@ switch (choose1)
                     {
                         Console.Write("enter the isbn : ");
                         int isbn = int.Parse(Console.ReadLine());
-                        manager.SearchBookByIsbn(isbn);
+                        Book found = manager.FindBookByIsbn(isbn);
+                        if (found != null)
+                        {
+                            ShowBook(found);
+                        }
+                        else
+                        {
+                            Console.WriteLine("book not found!");
+                        }
+
                         break;
                     }
 
@@ -143,7 +157,18 @@ switch (choose1)
                     {
                         Console.Write("enter the Title : ");
                         string title = Console.ReadLine();
-                        manager.SearchBookByTitle(title);
+                        List<Book> booklist = manager.FindBookByTitle(title);
+                        if (booklist.Count == 0)
+                        {
+                            Console.WriteLine("book not found!");
+                        }
+                        else
+                        {
+                            foreach (Book book in booklist)
+                            {
+                                ShowBook(book);
+                            }
+                        }
                         break;
                     }
 
@@ -151,10 +176,21 @@ switch (choose1)
                     {
                         Console.Write("enter the date : ");
                         int date = int.Parse(Console.ReadLine());
-                        manager.SearchBookByDate(date);
+                        List<Book> booklist = manager.FindBookByPublishYear(date);
+                        if (booklist.Count == 0)
+                        {
+
+                            Console.WriteLine("book not found!");
+                        }
+                        else
+                        {
+                            foreach (Book book in booklist)
+                            {
+                                ShowBook(book);
+                            }
+                        }
 
                         break;
-
                     }
 
             }
