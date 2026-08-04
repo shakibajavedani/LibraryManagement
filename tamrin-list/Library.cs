@@ -20,54 +20,55 @@ namespace tamrin_list
                 books.Add(book);
             }
 
-            //حذف کردن کتاب از لیست
-            public void RemoveBook(int isbn)
-            {
+        //حذف کردن کتاب از لیست
+        public bool RemoveBook(int isbn)
+        {
             Book found = FindBookByIsbn(isbn);
+
             if (found == null)
             {
-                Console.WriteLine("Book not found.");
-                return;
-            }
-            books.Remove(found);
+                return false;
             }
 
-            //ادیت زدن اطلاعات لیست
-        public void EditTitleBook(int isbn,string newtitle)
+            books.Remove(found);
+            return true;
+        }
+
+        //ادیت زدن اطلاعات لیست
+        public bool EditTitleBook(int isbn,string newtitle)
         {
             Book found = FindBookByIsbn(isbn);
             if (found == null)
             {
-                Console.WriteLine("Book not found.");
-                return;
+                return false;
             }
 
             found.Title = newtitle;
-
+            return true;
         }
 
-        public void EditAuthorBook(int isbn, string newauthor)
+        public bool EditAuthorBook(int isbn, string newauthor)
         {
             Book found = FindBookByIsbn(isbn);
             if (found == null)
             {
-                Console.WriteLine("Book not found.");
-                return;
+                return false;
             }
 
             found.Author = newauthor;
+            return true;
         }
 
-        public void EditDateBook(int isbn, int newDate)
+        public bool EditDateBook(int isbn, int newDate)
         {
             Book found = FindBookByIsbn(isbn);
             if (found == null)
             {
-                Console.WriteLine("Book not found.");
-                return;
+                return false;
             }
 
             found.Date = newDate;
+            return true;
         }
 
 
@@ -84,8 +85,8 @@ namespace tamrin_list
             }
 
         public void SearchBookByTitle(string title)
-        { 
-            List<Book> booklist = FindBookByTitle(title)
+        {
+            List<Book> booklist = FindBookByTitle(title);
             if (booklist != null)
             {
                 foreach (Book book in booklist)
@@ -97,7 +98,7 @@ namespace tamrin_list
 
         public void SearchBookByDate(int date)
         {
-            List<Book> booklist = FindBookByTitle(date);
+            List<Book> booklist = FindBookByDate(date);
             if (booklist != null)
             {
                 foreach (Book book in booklist)
@@ -129,7 +130,7 @@ namespace tamrin_list
             {
             }
 
-
+        
     }
 
 }

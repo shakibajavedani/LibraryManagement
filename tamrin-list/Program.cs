@@ -41,11 +41,18 @@ switch (choose1)
 
     case 2:
         {
-            //remove
-            Console.Write("enter the isbn : ");
+            // remove
+            Console.Write("Enter the ISBN: ");
             int isbn = int.Parse(Console.ReadLine());
 
-            manager.RemoveBook(isbn);
+            if (manager.RemoveBook(isbn))
+            {
+                Console.WriteLine("Book removed from list.");
+            }
+            else
+            {
+                Console.WriteLine("Book not found.");
+            }
 
             break;
         }
@@ -68,7 +75,14 @@ switch (choose1)
                 {
                 Console.Write("enter the new Title : ");
                 string newTitle = Console.ReadLine();
-                manager.EditTitleBook(isbn, newTitle);
+                if(manager.EditTitleBook(isbn, newTitle))
+                        {
+                            Console.WriteLine("Book title updated.");
+                        }
+                else
+                        {
+                            Console.WriteLine("Book not found.");
+                        }
                 break;
                 }
 
@@ -76,16 +90,25 @@ switch (choose1)
                     {
                         Console.Write("enter the new Author : ");
                         string newAuthorName = Console.ReadLine();
-                        manager.EditTitleBook(isbn, newAuthorName);
+                        
+                        if(manager.EditTitleBook(isbn, newAuthorName))
+                        { 
+                            Console.WriteLine("Book author name updated.");
+                        }
+
+                        else { Console.WriteLine("Book not found."); }
 
                         break;
                     }
 
                 case 3:
                     {
-                        Console.Write("enter the new Title : ");
+                        Console.Write("enter the new date : ");
                         int newDate = int.Parse(Console.ReadLine());
-                        manager.EditDateBook(isbn, newDate);
+                        if(manager.EditDateBook(isbn, newDate))
+                        { Console.WriteLine("Book date updated."); }
+                        else
+                        { Console.WriteLine("Book not found."); }
 
                         break;
                     }
