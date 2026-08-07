@@ -4,10 +4,10 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using tamrin_list;
+using LibraryManagement;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace tamrin_list
+namespace LibraryManagement
 {
         class BookManager
         {
